@@ -46,7 +46,7 @@
                     </a>
 
                     <!-- Kartu: Manajemen Pengguna -->
-                    <a href="#" class="block p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transform transition-all duration-300">
+                    <a href="{{ route('users.index') }}" class="block p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transform transition-all duration-300">
                         <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 dark:bg-indigo-900 mb-4">
                             <svg class="h-6 w-6 text-indigo-600 dark:text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-2.278 1.125 1.125 0 0 0 0-1.585 9.337 9.337 0 0 0-4.121-2.278 9.38 9.38 0 0 0-2.625.372M15 19.128v-1.5A2.625 2.625 0 0 0 12.375 15H11.25m-2.625 0A2.625 2.625 0 0 0 6 17.625v1.5a2.625 2.625 0 0 0 2.625 2.625m0 0H15m-1.125-7.5h1.125a2.625 2.625 0 0 1 2.625 2.625v1.5a2.625 2.625 0 0 1-2.625 2.625h-1.125a2.625 2.625 0 0 1-2.625-2.625v-1.5A2.625 2.625 0 0 1 13.875 11.25Zm-2.625 0h-1.125a2.625 2.625 0 0 0-2.625 2.625v1.5a2.625 2.625 0 0 0 2.625 2.625h1.125a2.625 2.625 0 0 0 2.625-2.625v-1.5A2.625 2.625 0 0 0 11.25 11.25Z" />

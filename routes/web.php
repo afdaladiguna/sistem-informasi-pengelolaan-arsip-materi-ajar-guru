@@ -19,6 +19,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+
     // Tambahkan route admin lainnya di sini
 });
 
