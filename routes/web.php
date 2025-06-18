@@ -7,10 +7,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Dashboard default untuk guru
+// Dashboard default HANYA untuk guru
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', 'role:guru'])->name('dashboard');
 
 // Grup untuk route admin
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
@@ -20,6 +20,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     })->name('admin.dashboard');
 
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+    Route::resource('subjects', \App\Http\Controllers\Admin\SubjectController::class);
+    Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
+    Route::resource('materials', \App\Http\Controllers\Admin\MaterialController::class);
 
     // Tambahkan route admin lainnya di sini
 });

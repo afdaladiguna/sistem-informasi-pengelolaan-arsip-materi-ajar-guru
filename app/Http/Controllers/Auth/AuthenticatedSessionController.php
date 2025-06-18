@@ -34,13 +34,17 @@ class AuthenticatedSessionController extends Controller
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
-            // Redirect berdasarkan role setelah login berhasil
+            // --- AWAL PERUBAHAN ---
             $user = Auth::user();
+
+            // Jika role adalah admin, SELALU arahkan ke admin dashboard.
             if ($user->role === 'admin') {
-                return redirect()->intended('/admin/dashboard');
+                return redirect()->route('admin.dashboard');
             }
 
-            return redirect()->intended('/dashboard');
+            // Jika bukan, SELALU arahkan ke dashboard utama.
+            return redirect()->route('dashboard');
+            // --- AKHIR PERUBAHAN ---
         }
 
         // Jika gagal, kembalikan ke halaman login dengan error

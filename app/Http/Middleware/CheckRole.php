@@ -15,8 +15,10 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, string $role): Response
     {
+        // Cek jika pengguna tidak login atau rolenya tidak sesuai dengan yang diizinkan
         if (! $request->user() || $request->user()->role !== $role) {
-            abort(403, 'Hanya admin yang dapat mengakses fitur ini.');
+            // Tampilkan halaman error 403 dengan pesan yang lebih umum
+            abort(403, 'ANDA TIDAK MEMILIKI AKSES UNTUK HALAMAN INI.');
         }
 
         return $next($request);
