@@ -2,15 +2,37 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth; // <-- Jangan lupa tambahkan ini di atas
 
 Route::get('/', function () {
-    return view('welcome');
+    // Cek apakah pengguna sudah login
+    if (Auth::check()) {
+        $user = Auth::user();
+        // Arahkan berdasarkan peran (role)
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        } else { // Asumsikan selain admin adalah guru
+            return redirect()->route('dashboard');
+        }
+    }
+    // Jika belum login, arahkan ke halaman login
+    return redirect()->route('login');
 });
 
 // Dashboard default HANYA untuk guru
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified', 'role:guru'])->name('dashboard');
+
+// Dashboard utama guru
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified', 'role:guru'])->name('dashboard');
+    return view('guru.dashboard'); // Arahkan ke view dashboard guru
+})->middleware(['auth', 'role:guru'])->name('dashboard');
+
+// Grup untuk semua fitur guru
+Route::middleware(['auth', 'role:guru'])->prefix('guru')->name('guru.')->group(function () {
+    Route::resource('materials', \App\Http\Controllers\Guru\MaterialController::class);
+});
 
 // Grup untuk route admin
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
